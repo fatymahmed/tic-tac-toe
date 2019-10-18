@@ -7,9 +7,12 @@
     <title>Tic tac toe</title>
 </head>
 <body>
-        Enter player 1 name <input type="text" name="fname" id ="first_player"><br>
-        Enter player 2  name <input type="text" name="fname" id ="second_player"><br>
+    <div>
+        <div id="players-info">
+            Enter player 1 name <input type="text" name="fname" id ="first_player"><br>
+            Enter player 2  name <input type="text" name="fname" id ="second_player"><br>
         <button onclick="startGame()">Start game</button><br>
+        </div>
         <div id="board" onclick="getClickIndex(event)">
             <span id="pos-1"></span>
             <span id="pos-2"></span>
@@ -21,6 +24,8 @@
             <span id="pos-8"></span>
             <span id="pos-9"></span>
         </div>
+    </div>
+        
     <script src='main.js'></script>
 </body>
 </html>
