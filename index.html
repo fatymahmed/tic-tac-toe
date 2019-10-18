@@ -7,10 +7,10 @@
     <title>Tic tac toe</title>
 </head>
 <body>
-        Enter player 1 name <input type="text" name="fname"><br>
-        Enter player 2  name <input type="text" name="fname"><br>
+        Enter player 1 name <input type="text" name="fname" id ="first_player"><br>
+        Enter player 2  name <input type="text" name="fname" id ="second_player"><br>
         <button onclick="startGame()">Start game</button><br>
-        <div id="board">
+        <div id="board" onclick="getClickIndex(event)">
             <span id="pos-1"></span>
             <span id="pos-2"></span>
             <span id="pos-3"></span><br>
