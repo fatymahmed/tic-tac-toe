@@ -130,6 +130,7 @@ function startGame() {
 }
 
 function playAgain() {
+  document.getElementById('result').innerHTML = '';
   game.playerOne.clearMoves();
   game.playerTwo.clearMoves();
   game.board.clearBoard();
