@@ -1,3 +1,10 @@
+.game{
+    width: 300px;
+    margin: auto;
+}
+#players-info{
+    padding: 10px;
+}
 .board-cell{
     display: inline-block;
     width: 50px;
@@ -22,4 +29,8 @@
 }
 .bottom-border{
     border-bottom: 2px solid gray;
+}
+
+#result{
+    padding: 5px;
 }
