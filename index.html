@@ -5,26 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic tac toe</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div>
         <div id="players-info">
-            Enter player 1 name <input type="text" name="fname" id ="first_player"><br>
-            Enter player 2  name <input type="text" name="fname" id ="second_player"><br>
+            Enter player 1 name <input type="text" name="fname" id ="first_player" required><br>
+            Enter player 2  name <input type="text" name="fname" id ="second_player" required><br>
         <button onclick="startGame()">Start game</button><br>
         </div>
-        <div id="board" onclick="getClickIndex(event)">
-            <span id="pos-1"></span>
-            <span id="pos-2"></span>
-            <span id="pos-3"></span><br>
-            <span id="pos-4"></span>
-            <span id="pos-5"></span>
-            <span id="pos-6"></span><br>
-            <span id="pos-7"></span>
-            <span id="pos-8"></span>
-            <span id="pos-9"></span>
+        <div id="display-info">
+
         </div>
+        <div id="board" onclick="getClickIndex(event)">
+            <span class="board-cell bottom-border" id="pos-1"></span>
+            <span class="board-cell left-border bottom-border" id="pos-2"></span>
+            <span class="board-cell left-border bottom-border" id="pos-3"></span><br>
+            <span class="board-cell bottom-border" id="pos-4"></span>
+            <span class="board-cell left-border bottom-border" id="pos-5"></span>
+            <span class="board-cell left-border bottom-border" id="pos-6"></span><br>
+            <span class="board-cell" id="pos-7"></span>
+            <span class="board-cell left-border" id="pos-8"></span>
+            <span class="board-cell left-border" id="pos-9"></span>
+        </div>        
     </div>
+    <div id = "result"></div>
+    <button id ='p-again' onclick="playAgain()"> Play Again</button>
         
     <script src='main.js'></script>
 </body>

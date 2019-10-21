@@ -1,10 +1,12 @@
 const Player = (name,letter) => {
 	let moves = ''; //012,345,678,036,147,258,048,246 ['012']
-	scores = 0;
+	let scores = 0;
 	const addMove = (position) => moves += position
 	const getName =() => name;
 	const getMoves = () => moves.length;
 	const winningMoves=['012','345','678','036','147','258','048','246'];
+	const clearMoves = () => moves = '';
+	
 	const checkIfWon = () => {
 		let check=false;
 		winningMoves.forEach((winMove)=>{
@@ -21,7 +23,9 @@ const Player = (name,letter) => {
 		})
 		return check;
 	} 
-    return {letter,addMove,checkIfWon,getName,getMoves}
+	const won = ()=> scores += 1
+	const getScores = ()=> scores
+    return {letter,addMove,checkIfWon,getName,getMoves,clearMoves,getScores,won,scores}
 };
 const gameBoard = (() =>{
 	let board = ["1","2","3","4","5","6","7","8","9"];
@@ -39,8 +43,9 @@ const gameBoard = (() =>{
 			position.innerHTML=pos;
 		});
 	}
+	const clearBoard = () => board = ["1","2","3","4","5","6","7","8","9"];
 	return {
-		render,enterMove
+		render,enterMove,clearBoard
 	}
 })();
 
@@ -59,6 +64,11 @@ const Game = (player_one,player_two,board) => {
 		}
 	}
 	const current_player = () => c_player 
+	const game_info = ()=> {
+		document.getElementById('display-info').innerHTML = `${game.player_one.getName()} : ${game.player_one.letter} &nbsp; &nbsp; ${game.player_two.getName()}  : ${game.player_two.letter}</br>
+		Scores :  ${player_one.getScores()} &nbsp;  ${player_two.getScores()}`
+		dd = player_one.getScores();
+	}
 
 	return {
 		current_player,
@@ -68,24 +78,29 @@ const Game = (player_one,player_two,board) => {
 		player_one,
 		player_two,
 		board,
-		togglePlayer
+		togglePlayer,
+		game_info
 	}
 }
 
 let game = {}
 function getClickIndex(event){
 	const id = event.target.id
-	move = Number(id.slice(-1)) - 1;
+	const move = Number(id.slice(-1)) - 1;
 	if (game.state()){
-		if(game.board.enterMove(move,game.current_player().letter))
+		if(game.board.enterMove(move,game.current_player().letter) && !Number.isNaN(move))
 		{
 			game.current_player().addMove(move);
 			game.board.render();
 			if(game.current_player().checkIfWon()){
-				document.getElementById("board").innerHTML=`${game.current_player().getName()} has won!!`;
+				document.getElementById("result").innerHTML=`${game.current_player().getName()} has won!!`;
+				document.getElementById("p-again").style.display ='block';
+				game.current_player().won();
+				game.game_info();
 			}
 			else if((game.player_one.getMoves()+game.player_two.getMoves())===9){
-				document.getElementById("board").innerHTML=`It's a tie!!`;
+				document.getElementById("result").innerHTML=`It's a tie!!`;
+				document.getElementById("p-again").style.display = 'block';
 			}
 			game.togglePlayer();
 		}
@@ -101,7 +116,13 @@ function startGame(){
 	player_two = Player(player_two_name, 'O');
 	game = Game(player_one,player_two,gameBoard);
 	gameBoard.render();
-
-
+	game.game_info();
+	document.getElementById('board').style.display='block';
 }
 
+function playAgain(){
+	game.player_one.clearMoves();
+	game.player_two.clearMoves();
+	game.board.clearBoard();
+	game.board.render();
+}
