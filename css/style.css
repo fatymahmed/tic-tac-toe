@@ -1,0 +1,36 @@
+.game{
+    width: 300px;
+    margin: auto;
+}
+#players-info{
+    padding: 10px;
+}
+.board-cell{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding : 5px;
+    text-align: center;
+    font-size: 30px;
+    
+}
+
+#board{
+    width: 200px;
+    height: 200px;
+    display: none;
+}
+#p-again{
+    display: none;
+}
+
+.left-border{
+    border-left: 2px solid gray;
+}
+.bottom-border{
+    border-bottom: 2px solid gray;
+}
+
+#result{
+    padding: 5px;
+}
